@@ -11,15 +11,16 @@ import com.gavs.springboot.model.Employee;
 import com.gavs.springboot.model.EmployeeDAO;
 
 @RestController
-public class EmpService {
+public class EmployeeService {
 	@RequestMapping("/hello")
     public String welcomepage() {
         return "hello to Spring REST Controller";
     }
-    @RequestMapping(value="/findEmployee",method= RequestMethod.GET)
-    public Employee homepage(@RequestBody Employee emp) throws SQLException {
+    @RequestMapping(value="/findEmployee",method= RequestMethod.POST)
+    public Employee homepage(@RequestBody Employee emp) throws SQLException  {
         EmployeeDAO empd=new EmployeeDAO();
         return empd.findEmployeeById(emp);
+        
     }
     @RequestMapping(value="/addEmployee",method= RequestMethod.POST)
     public int addEmployee(@RequestBody Employee emp) {
@@ -32,19 +33,9 @@ public class EmpService {
         return empd.modifyEmployee(emp);
     }
     @RequestMapping(value="/removeEmployee",method= RequestMethod.DELETE)
-    public int removeEmployee(@RequestBody Employee emp) {
-    	EmployeeDAO empdao=new EmployeeDAO();
-        return empdao.deleteEmployee(emp);
+    public int removeEmployee(@RequestBody    Employee emp) {
+        EmployeeDAO emp2 = new EmployeeDAO();
+        return emp2.deleteEmployee(emp);
     }
-    @RequestMapping(value="/displayEmployee")
-    public List<Employee> list(){
-    	EmployeeDAO empd=new EmployeeDAO();
-    	try {
-			return empd.displayEmployee();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-    }
-}
+   
 
