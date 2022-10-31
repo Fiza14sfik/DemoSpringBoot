@@ -11,7 +11,7 @@ import com.gavs.springboot.model.Employee;
 import com.gavs.springboot.model.EmployeeDAO;
 
 @RestController
-public class EmployeeService {
+public class EmpService {
 	@RequestMapping("/hello")
     public String welcomepage() {
         return "hello to Spring REST Controller";
